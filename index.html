@@ -1,0 +1,1450 @@
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aegean Modern – Greek Restaurant & Bar Business Plan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-alt: #020617;
+      --card: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.15);
+      --accent-strong: #0ea5e9;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --danger: #ef4444;
+      --success: #22c55e;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.85);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #1e293b, #020617 55%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Layout */
+
+    .app-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.95),
+        rgba(15, 23, 42, 0.7),
+        transparent
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-pill {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 20% 0%, #38bdf8, #0f172a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      color: #e0f2fe;
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.45);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-tagline {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 13px;
+    }
+
+    .nav-link {
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--muted);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 11px;
+    }
+
+    .nav-link:hover {
+      color: #e5e7eb;
+      border-color: rgba(148, 163, 184, 0.3);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .nav-link.primary {
+      border-color: rgba(56, 189, 248, 0.7);
+      background: linear-gradient(
+        135deg,
+        rgba(56, 189, 248, 0.18),
+        rgba(8, 47, 73, 0.8)
+      );
+      color: #e0f2fe;
+    }
+
+    .nav-link.primary:hover {
+      background: linear-gradient(
+        135deg,
+        rgba(56, 189, 248, 0.28),
+        rgba(8, 47, 73, 0.95)
+      );
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+    }
+
+    .burger {
+      display: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .burger span {
+      width: 16px;
+      height: 2px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      display: block;
+      position: relative;
+    }
+
+    .burger span::before,
+    .burger span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 16px;
+      height: 2px;
+      border-radius: 999px;
+      background: #e5e7eb;
+    }
+
+    .burger span::before {
+      top: -5px;
+    }
+
+    .burger span::after {
+      top: 5px;
+    }
+
+    .nav-mobile {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      padding: 8px 16px 16px;
+      border-top: 1px solid rgba(148, 163, 184, 0.1);
+      background: linear-gradient(to bottom, #020617, #020617);
+    }
+
+    .nav-mobile .nav-link {
+      width: 100%;
+      text-align: left;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 18px 16px 60px;
+    }
+
+    /* Hero */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 2fr);
+      gap: 26px;
+      margin-top: 10px;
+      align-items: stretch;
+    }
+
+    .hero-left {
+      padding: 22px 22px 20px;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.6), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.4), transparent 55%),
+        linear-gradient(145deg, rgba(15, 23, 42, 0.95), #020617);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #e5e7eb;
+    }
+
+    .hero-pill span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: radial-gradient(circle, #22c55e, #166534);
+      box-shadow: 0 0 15px rgba(34, 197, 94, 0.7);
+    }
+
+    .hero-title {
+      margin-top: 16px;
+      font-size: clamp(28px, 4vw, 34px);
+      font-weight: 650;
+      letter-spacing: 0.02em;
+      line-height: 1.12;
+    }
+
+    .hero-title span.accent {
+      background: linear-gradient(120deg, #7dd3fc, #e0f2fe);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 95%;
+    }
+
+    .hero-meta {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .hero-meta span {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 9px 16px;
+      border: 1px solid transparent;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      background: transparent;
+      color: inherit;
+      text-decoration: none;
+      transition: all 0.15s ease-out;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      border-color: rgba(8, 47, 73, 0.9);
+      color: #0b1220;
+      font-weight: 600;
+      box-shadow: 0 15px 35px rgba(56, 189, 248, 0.5);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.06);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      border-color: rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--muted);
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(148, 163, 184, 0.9);
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .btn small {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .hero-badges {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-badge {
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .hero-right {
+      display: grid;
+      gap: 12px;
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top, #020617, #020617);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      padding: 14px 15px 14px;
+      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.85);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .pill-soft {
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.6);
+      color: #7dd3fc;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .metric {
+      border-radius: 12px;
+      padding: 10px 9px;
+      background: radial-gradient(circle at top, #020617, #020617);
+      border: 1px solid rgba(30, 64, 175, 0.7);
+    }
+
+    .metric-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .metric-value {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .metric-tag {
+      margin-top: 3px;
+      font-size: 11px;
+      color: #93c5fd;
+    }
+
+    .timeline-mini {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .timeline-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle, #22c55e, #166534);
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+    /* Sections */
+
+    section {
+      margin-top: 40px;
+    }
+
+    section h2 {
+      font-size: 18px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    section h3 {
+      font-size: 17px;
+      margin-top: 12px;
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+      gap: 18px;
+    }
+
+    .card-sm {
+      border-radius: var(--radius-md);
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      padding: 12px 13px;
+      font-size: 13px;
+    }
+
+    .card-sm h4 {
+      margin: 0 0 6px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: 11px;
+    }
+
+    .pill {
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: var(--muted);
+    }
+
+    ul {
+      margin: 6px 0 0;
+      padding-left: 18px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    li + li {
+      margin-top: 2px;
+    }
+
+    /* Accordion (for Documents / Downloads) */
+
+    .accordion {
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.9);
+      overflow: hidden;
+    }
+
+    .accordion-item + .accordion-item {
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+    }
+
+    .accordion-header {
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .accordion-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+
+    .accordion-icon {
+      font-size: 16px;
+      color: var(--muted);
+      transition: transform 0.16s ease;
+    }
+
+    .accordion-icon.open {
+      transform: rotate(90deg);
+      color: #e5e7eb;
+    }
+
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+    }
+
+    .accordion-inner {
+      padding: 8px 12px 10px;
+      font-size: 13px;
+    }
+
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .download-card {
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 8px 9px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .download-title {
+      font-size: 13px;
+    }
+
+    .download-meta {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .download-actions {
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .download-actions a {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      color: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .download-actions a:hover {
+      border-color: rgba(56, 189, 248, 0.7);
+      color: #7dd3fc;
+    }
+
+    .badge {
+      padding: 3px 7px;
+      border-radius: 999px;
+      font-size: 11px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--muted);
+    }
+
+    .badge.green {
+      border-color: rgba(22, 163, 74, 0.8);
+      color: #bbf7d0;
+    }
+
+    .badge.outline {
+      border-style: dashed;
+    }
+
+    footer {
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 16px;
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      background: #020617;
+    }
+
+    footer strong {
+      color: #e5e7eb;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-left {
+        order: 1;
+      }
+      .hero-right {
+        order: 2;
+      }
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+      .burger {
+        display: flex;
+      }
+      .hero-left {
+        padding: 18px 16px;
+      }
+      .page {
+        padding-inline: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header>
+      <div class="nav">
+        <div class="nav-left">
+          <div class="logo-pill">A</div>
+          <div class="brand-text">
+            <div class="brand-name">Aegean Modern</div>
+            <div class="brand-tagline">Greek Restaurant & Bar&nbsp;&bull;&nbsp;120 Seats</div>
+          </div>
+        </div>
+        <nav class="nav-links">
+          <button class="nav-link" data-scroll="#section-concept">Concept</button>
+          <button class="nav-link" data-scroll="#section-financials">Financials</button>
+          <button class="nav-link" data-scroll="#section-ops">Operations</button>
+          <button class="nav-link" data-scroll="#section-marketing">Marketing</button>
+          <button class="nav-link" data-scroll="#section-training">People</button>
+          <button class="nav-link" data-scroll="#section-downloads">Docs</button>
+          <button class="nav-link primary" data-scroll="#section-opening">
+            Opening & Timeline
+          </button>
+        </nav>
+        <button class="burger" id="burger">
+          <span></span>
+        </button>
+      </div>
+      <div class="nav-mobile" id="nav-mobile">
+        <button class="nav-link" data-scroll="#section-concept">Concept</button>
+        <button class="nav-link" data-scroll="#section-financials">Financials</button>
+        <button class="nav-link" data-scroll="#section-ops">Operations</button>
+        <button class="nav-link" data-scroll="#section-marketing">Marketing</button>
+        <button class="nav-link" data-scroll="#section-training">People</button>
+        <button class="nav-link" data-scroll="#section-downloads">Docs</button>
+        <button class="nav-link primary" data-scroll="#section-opening">
+          Opening & Timeline
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <div class="page">
+        <!-- HERO -->
+        <div class="hero">
+          <div class="hero-left">
+            <div class="hero-pill">
+              <span class="dot"></span>
+              <span>Restaurant Ready · Target Opening April 1</span>
+            </div>
+            <h1 class="hero-title">
+              Investor & Operations Hub for
+              <span class="accent">Aegean Modern</span>
+            </h1>
+            <p class="hero-subtitle">
+              A 120-seat contemporary Greek restaurant & bar built around wood-fire
+              cooking, mezze, a high-margin cocktail program, and an April 1st launch.
+              Every plan, financial, and SOP is collected here.
+            </p>
+            <div class="hero-meta">
+              <span>120 seats + bar</span>
+              <span>Target opening: April 1</span>
+              <span>Positioning: Upscale-casual, modern Greek</span>
+            </div>
+            <div class="hero-cta-row">
+              <a class="btn btn-primary" href="#section-downloads">
+                <span>View All Documents</span>
+              </a>
+              <button class="btn btn-ghost" data-scroll="#section-financials">
+                <span>See Financial Model</span>
+              </button>
+            </div>
+            <div class="hero-badges">
+              <div class="hero-badge">Full business plan</div>
+              <div class="hero-badge">Operational playbooks</div>
+              <div class="hero-badge">HR, safety, and training</div>
+              <div class="hero-badge">Marketing & launch strategy</div>
+            </div>
+          </div>
+
+          <div class="hero-right">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Snapshot</div>
+                <div class="pill-soft">Key Metrics</div>
+              </div>
+              <div class="metrics-grid">
+                <div class="metric">
+                  <div class="metric-label">Year 1 Revenue</div>
+                  <div class="metric-value">$2.6M–$3.2M</div>
+                  <div class="metric-tag">Bar 30–35% of sales</div>
+                </div>
+                <div class="metric">
+                  <div class="metric-label">EBITDA Target</div>
+                  <div class="metric-value">8–12%</div>
+                  <div class="metric-tag">Yr 2+: 12–17%</div>
+                </div>
+                <div class="metric">
+                  <div class="metric-label">Startup Capital</div>
+                  <div class="metric-value">$0.9M–$1.7M</div>
+                  <div class="metric-tag">Buildout + working cap</div>
+                </div>
+              </div>
+              <div class="timeline-mini">
+                <div>
+                  <span class="timeline-dot"></span>
+                  Restaurant built & equipped before <strong>April 1</strong>
+                </div>
+                <div>
+                  <span class="timeline-dot"></span>
+                  Staff hiring & training: February–March
+                </div>
+                <div>
+                  <span class="timeline-dot"></span>
+                  Soft opening late March · Grand opening April 1
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Quick Links</div>
+              </div>
+              <div class="download-grid">
+                <div class="download-card">
+                  <div class="download-title">Full Business Plan</div>
+                  <div class="download-meta">Narrative overview, concept, market, risk.</div>
+                  <div class="download-actions">
+                    <a href="#section-concept">View summary</a>
+                    <span class="badge outline">PDF in Docs</span>
+                  </div>
+                </div>
+                <div class="download-card">
+                  <div class="download-title">Financial Model</div>
+                  <div class="download-meta">3-year, monthly, sensitivity & break-even.</div>
+                  <div class="download-actions">
+                    <a href="#section-financials">View summary</a>
+                    <span class="badge outline">Excel in Docs</span>
+                  </div>
+                </div>
+                <div class="download-card">
+                  <div class="download-title">Operations & Training</div>
+                  <div class="download-meta">
+                    SOPs, training, checklists, safety, HR, HACCP.
+                  </div>
+                  <div class="download-actions">
+                    <a href="#section-ops">View summary</a>
+                    <span class="badge outline">Multiple PDFs</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- CONCEPT -->
+        <section id="section-concept">
+          <h2>01 · Concept</h2>
+          <div class="section-subtitle">
+            The high-level story: concept, positioning, guest, and menu.
+          </div>
+
+          <div class="grid-2">
+            <div class="card-sm">
+              <h4>Positioning & Guest</h4>
+              <p>
+                Aegean Modern is an upscale-casual, contemporary Greek restaurant & bar
+                designed as a destination for:
+              </p>
+              <ul>
+                <li>Guests 28–65 with strong dining spend</li>
+                <li>Food-forward professionals, couples, and groups</li>
+                <li>Weekend brunch & late-night bar crowd</li>
+              </ul>
+              <div class="pill-row">
+                <span class="pill">Modern Greek</span>
+                <span class="pill">Wood-fire grill</span>
+                <span class="pill">Mezze shared plates</span>
+                <span class="pill">High-energy nights</span>
+              </div>
+            </div>
+
+            <div class="card-sm">
+              <h4>Menu Direction</h4>
+              <p>Core menu pillars:</p>
+              <ul>
+                <li>Mezze: tzatziki trio, tyrokafteri, octopus, calamari, spanakopita</li>
+                <li>Mains: lamb chops, whole branzino, souvlaki, modern moussaka</li>
+                <li>Vegetarian: roasted cauliflower, halloumi, Mediterranean grain bowls</li>
+                <li>Desserts: loukoumades, baklava sundae, yogurt panna cotta</li>
+                <li>Bar: Greek spirits, citrus/herb cocktails, Greek wines, NA options</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- FINANCIALS -->
+        <section id="section-financials">
+          <h2>02 · Financials</h2>
+          <div class="section-subtitle">
+            Revenue model, cost structure, break-even, and key assumptions.
+          </div>
+
+          <div class="grid-2">
+            <div class="card-sm">
+              <h4>Revenue Model</h4>
+              <ul>
+                <li>Avg. check: $45–65 (dinner), $25–35 (brunch)</li>
+                <li>Bar share: 30–35% of revenue</li>
+                <li>Weekly covers: ~1,100–1,300</li>
+                <li>Year 1 revenue: $2.6M–$3.2M</li>
+                <li>Year 2–3 growth from optimization & maturation</li>
+              </ul>
+              <p style="margin-top:8px;">
+                Download the detailed 3-year and monthly models:
+              </p>
+              <div class="pill-row">
+                <span class="pill">3-Year summary (Excel)</span>
+                <span class="pill">Monthly model</span>
+                <span class="pill">Sensitivity analysis</span>
+                <span class="pill">Break-even tool</span>
+              </div>
+            </div>
+
+            <div class="card-sm">
+              <h4>Cost & Profitability</h4>
+              <ul>
+                <li>Food COGS: 27–30%</li>
+                <li>Beverage COGS: 18–22%</li>
+                <li>Labor: 30–33%</li>
+                <li>Occupancy: 6–10%</li>
+                <li>EBITDA: 8–12% Year 1; 12–17% thereafter</li>
+              </ul>
+              <p style="margin-top:8px;">
+                Included tools:
+              </p>
+              <ul>
+                <li>Menu engineering sheet</li>
+                <li>Detailed recipe costing & cocktail costing</li>
+                <li>Cost-control dashboards and bar cost per pour</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- OPERATIONS -->
+        <section id="section-ops">
+          <h2>03 · Operations & Systems</h2>
+          <div class="section-subtitle">
+            How the restaurant runs day-to-day: SOPs, checklists, inventory, safety.
+          </div>
+
+          <div class="grid-2">
+            <div class="card-sm">
+              <h4>Front & Back of House SOPs</h4>
+              <ul>
+                <li>Service steps, greeting standards, table touch cadence</li>
+                <li>Opening / closing checklists for FOH, BOH, and bar</li>
+                <li>Server sidework, manager logbook, incident reports</li>
+                <li>Kitchen prep lists by station (grill, cold, fry, dessert)</li>
+              </ul>
+              <p style="margin-top:8px;">Everything is packaged as ready-to-use PDFs.</p>
+            </div>
+
+            <div class="card-sm">
+              <h4>Safety, HACCP & Compliance</h4>
+              <ul>
+                <li>Safety & sanitation handbook</li>
+                <li>HACCP-based food safety plan & logs</li>
+                <li>Equipment maintenance calendar</li>
+                <li>HR compliance packet & employee handbook</li>
+              </ul>
+              <div class="pill-row">
+                <span class="pill">Temp logs</span>
+                <span class="pill">Receiving controls</span>
+                <span class="pill">Cross-contamination rules</span>
+                <span class="pill">Emergency procedures</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- MARKETING -->
+        <section id="section-marketing">
+          <h2>04 · Marketing & Brand</h2>
+          <div class="section-subtitle">
+            Brand identity, launch strategy, and 6-month marketing plan.
+          </div>
+
+          <div class="grid-2">
+            <div class="card-sm">
+              <h4>Brand & Story</h4>
+              <ul>
+                <li>Brand identity (colors, type, logo concepts, mood board)</li>
+                <li>Brand story, mission & values</li>
+                <li>Social media branding guide</li>
+              </ul>
+              <p style="margin-top:8px;">
+                Visual direction: Aegean blues, white stone, warm metals, natural wood,
+                Mediterranean textures, and a modern, minimal logo.
+              </p>
+            </div>
+
+            <div class="card-sm">
+              <h4>Launch & Growth</h4>
+              <ul>
+                <li>Grand opening playbook (press, influencers, VIPs)</li>
+                <li>6-month marketing rollout plan</li>
+                <li>Email templates (opening, wine nights, holidays)</li>
+                <li>Social media content calendar & reel concepts</li>
+                <li>Local partnership outreach kit (gyms, hotels, offices, universities)</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- PEOPLE & TRAINING -->
+        <section id="section-training">
+          <h2>05 · People & Training</h2>
+          <div class="section-subtitle">
+            Hiring, onboarding, training, and performance management.
+          </div>
+
+          <div class="grid-2">
+            <div class="card-sm">
+              <h4>Hiring & Onboarding</h4>
+              <ul>
+                <li>Hiring plan & job descriptions for all roles</li>
+                <li>Hiring tracker (Excel)</li>
+                <li>30-day training calendar</li>
+                <li>Onboarding handbook & video script</li>
+              </ul>
+              <div class="pill-row">
+                <span class="pill">GM & chef</span>
+                <span class="pill">FOH team</span>
+                <span class="pill">BOH team</span>
+                <span class="pill">Bar team</span>
+              </div>
+            </div>
+
+            <div class="card-sm">
+              <h4>Training & Performance</h4>
+              <ul>
+                <li>Staff training modules (FOH & BOH)</li>
+                <li>Quizzes, certifications, and coaching guide</li>
+                <li>Bar training manual & wine tasting module</li>
+                <li>Employee review forms & KPI tracking</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- DOWNLOADS / DOCUMENTS -->
+        <section id="section-downloads">
+          <h2>06 · Documents & Downloads</h2>
+          <div class="section-subtitle">
+            Buttons and links to every major artifact. Replace <code>#</code> with your real URLs.
+          </div>
+
+          <div class="accordion" id="docs-accordion">
+            <!-- Business & Pitch -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div class="accordion-title">Business Plan & Pitch</div>
+                <div class="accordion-icon">›</div>
+              </div>
+              <div class="accordion-body">
+                <div class="accordion-inner">
+                  <div class="download-grid">
+                    <div class="download-card">
+                      <div class="download-title">Full Business Plan (PDF)</div>
+                      <div class="download-meta">Narrative, market, risk, concept.</div>
+                      <div class="download-actions">
+                        <a href="#">Open PDF</a>
+                        <span class="badge green">Core</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">Investor Prospectus (PDF)</div>
+                      <div class="download-meta">Condensed investor-facing version.</div>
+                      <div class="download-actions">
+                        <a href="#">Open PDF</a>
+                        <span class="badge">Investor</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">Executive Summary (PDF)</div>
+                      <div class="download-meta">One-page overview.</div>
+                      <div class="download-actions">
+                        <a href="#">Open PDF</a>
+                        <span class="badge">Summary</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">Pitch Deck (PPTX)</div>
+                      <div class="download-meta">Slide deck for investors & partners.</div>
+                      <div class="download-actions">
+                        <a href="#">Download PPTX</a>
+                        <span class="badge">Slides</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">Investor Deck w/ Charts (PPTX)</div>
+                      <div class="download-meta">Financial focus variant.</div>
+                      <div class="download-actions">
+                        <a href="#">Download PPTX</a>
+                        <span class="badge">Slides</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Financials -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div class="accordion-title">Financials & Costing</div>
+                <div class="accordion-icon">›</div>
+              </div>
+              <div class="accordion-body">
+                <div class="accordion-inner">
+                  <div class="download-grid">
+                    <div class="download-card">
+                      <div class="download-title">3-Year Financial Projections</div>
+                      <div class="download-meta">Revenue, COGS, labor, EBITDA.</div>
+                      <div class="download-actions">
+                        <a href="#">Download Excel</a>
+                        <span class="badge green">Core</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">Monthly Financial Model</div>
+                      <div class="download-meta">Month-by-month Year 1.</div>
+                      <div class="download-actions">
+                        <a href="#">Download Excel</a>
+                        <span class="badge">Monthly</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">Sensitivity & Scenario Model</div>
+                      <div class="download-meta">Avg check, covers, cost %.</div>
+                      <div class="download-actions">
+                        <a href="#">Download Excel</a>
+                        <span class="badge">Scenarios</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">Break-Even Tool</div>
+                      <div class="download-meta">Fixed costs & daily covers.</div>
+                      <div class="download-actions">
+                        <a href="#">Download Excel</a>
+                        <span class="badge">Break-even</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">Menu Engineering & Recipe Costing</div>
+                      <div class="download-meta">Item-level profitability.</div>
+                      <div class="download-actions">
+                        <a href="#">Download Excel</a>
+                        <span class="badge">Menu</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">Bar & Cocktail Cost Sheets</div>
+                      <div class="download-meta">Pour cost, margins, controls.</div>
+                      <div class="download-actions">
+                        <a href="#">Download Excel</a>
+                        <span class="badge">Bar</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Operations & Safety -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div class="accordion-title">Operations, Safety & Compliance</div>
+                <div class="accordion-icon">›</div>
+              </div>
+              <div class="accordion-body">
+                <div class="accordion-inner">
+                  <div class="download-grid">
+                    <div class="download-card">
+                      <div class="download-title">Operations Manual</div>
+                      <div class="download-meta">Service, kitchen, opening/closing.</div>
+                      <div class="download-actions">
+                        <a href="#">Open PDF</a>
+                        <span class="badge green">Core</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">SOP Handbook & Checklists</div>
+                      <div class="download-meta">FOH, BOH, bar SOPs.</div>
+                      <div class="download-actions">
+                        <a href="#">Open PDF</a>
+                        <span class="badge">SOPs</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">HACCP Plan & Safety Handbook</div>
+                      <div class="download-meta">Food safety, logs, procedures.</div>
+                      <div class="download-actions">
+                        <a href="#">Open PDF</a>
+                        <span class="badge">Safety</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">HR Compliance & Employee Handbook</div>
+                      <div class="download-meta">Policies, conduct, legal docs.</div>
+                      <div class="download-actions">
+                        <a href="#">Open PDF</a>
+                        <span class="badge">HR</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">Inventory, Equipment & Maintenance</div>
+                      <div class="download-meta">Equipment list, inventory, care.</div>
+                      <div class="download-actions">
+                        <a href="#">Download / Open</a>
+                        <span class="badge">Ops</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- People & Training -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div class="accordion-title">People, Training & Culture</div>
+                <div class="accordion-icon">›</div>
+              </div>
+              <div class="accordion-body">
+                <div class="accordion-inner">
+                  <div class="download-grid">
+                    <div class="download-card">
+                      <div class="download-title">Hiring Plan & Tracker</div>
+                      <div class="download-meta">Roles, timeline, tracking.</div>
+                      <div class="download-actions">
+                        <a href="#">Open / Download</a>
+                        <span class="badge green">Core</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">Training Modules & Calendars</div>
+                      <div class="download-meta">FOH & BOH training, quizzes.</div>
+                      <div class="download-actions">
+                        <a href="#">Open PDF</a>
+                        <span class="badge">Training</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">Bar & Wine Training</div>
+                      <div class="download-meta">Cocktail + wine education.</div>
+                      <div class="download-actions">
+                        <a href="#">Open PDF</a>
+                        <span class="badge">Bar</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">Onboarding & Video Script</div>
+                      <div class="download-meta">3-day onboarding + video.</div>
+                      <div class="download-actions">
+                        <a href="#">Open PDF</a>
+                        <span class="badge">Onboarding</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">Chef Recipe Bible</div>
+                      <div class="download-meta">All recipes, yields & plating.</div>
+                      <div class="download-actions">
+                        <a href="#">Open PDF</a>
+                        <span class="badge">Kitchen</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Branding & Marketing -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div class="accordion-title">Branding, Menu & Marketing</div>
+                <div class="accordion-icon">›</div>
+              </div>
+              <div class="accordion-body">
+                <div class="accordion-inner">
+                  <div class="download-grid">
+                    <div class="download-card">
+                      <div class="download-title">Brand Identity & Story</div>
+                      <div class="download-meta">Logo concepts, colors, mission.</div>
+                      <div class="download-actions">
+                        <a href="#">Open PDF</a>
+                        <span class="badge">Brand</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">Menu PDFs</div>
+                      <div class="download-meta">Menu layout & visual menu.</div>
+                      <div class="download-actions">
+                        <a href="#">Open PDF</a>
+                        <span class="badge">Menu</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">Marketing Plans & Emails</div>
+                      <div class="download-meta">Launch, 6-month, email templates.</div>
+                      <div class="download-actions">
+                        <a href="#">Open PDF</a>
+                        <span class="badge">Marketing</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">Social Media & Shot List</div>
+                      <div class="download-meta">Branding, calendar, photo shots.</div>
+                      <div class="download-actions">
+                        <a href="#">Open / Download</a>
+                        <span class="badge">Social</span>
+                      </div>
+                    </div>
+                    <div class="download-card">
+                      <div class="download-title">Catering & Events</div>
+                      <div class="download-meta">Events model, brochure, contract.</div>
+                      <div class="download-actions">
+                        <a href="#">Open / Download</a>
+                        <span class="badge">Events</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- OPENING & TIMELINE -->
+        <section id="section-opening">
+          <h2>07 · Opening & April 1 Timeline</h2>
+          <div class="section-subtitle">
+            The restaurant is assumed fully built. This is the execution path to opening on April 1.
+          </div>
+
+          <div class="grid-2">
+            <div class="card-sm">
+              <h4>High-Level Timeline</h4>
+              <ul>
+                <li><strong>January–February:</strong> finalize systems, manuals, and hiring pipeline.</li>
+                <li><strong>Early March:</strong> leadership hired, core team signed, training prep.</li>
+                <li><strong>Mid–Late March:</strong> full staff training, friends & family services.</li>
+                <li><strong>Last week of March:</strong> soft opening and refinement.</li>
+                <li><strong>April 1:</strong> grand opening with PR, influencers, VIPs.</li>
+              </ul>
+            </div>
+
+            <div class="card-sm">
+              <h4>Execution Focus</h4>
+              <ul>
+                <li>Hit bar % targets from day one with tight pour controls.</li>
+                <li>Lock SOPs early to protect guest experience under volume.</li>
+                <li>Use opening week as a controlled test of menu, pricing, and pacing.</li>
+                <li>Capture guest data (emails, loyalty) from the first service.</li>
+              </ul>
+              <p style="margin-top:8px;">
+                All related documents (opening checklists, staffing plans, grand opening
+                playbook) are already linked above in Ops, People, and Marketing.
+              </p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <footer>
+      <div>
+        <strong>Aegean Modern</strong> · Contemporary Greek Restaurant & Bar ·
+        Centralized Business Plan & Operations Hub
+      </div>
+      <div>Target Grand Opening: April 1</div>
+    </footer>
+  </div>
+
+  <script>
+    // Smooth scroll for nav buttons and in-page scroll buttons
+    function smoothScrollTo(target) {
+      const el = document.querySelector(target);
+      if (!el) return;
+      const y = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+
+    document.querySelectorAll("[data-scroll]").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const target = btn.getAttribute("data-scroll");
+        smoothScrollTo(target);
+        const mobile = document.getElementById("nav-mobile");
+        if (mobile && mobile.style.display === "flex") {
+          mobile.style.display = "none";
+        }
+      });
+    });
+
+    // Burger menu
+    const burger = document.getElementById("burger");
+    const navMobile = document.getElementById("nav-mobile");
+    if (burger && navMobile) {
+      burger.addEventListener("click", () => {
+        navMobile.style.display = navMobile.style.display === "flex" ? "none" : "flex";
+      });
+    }
+
+    // Accordion
+    document.querySelectorAll("#docs-accordion .accordion-item").forEach((item) => {
+      const header = item.querySelector(".accordion-header");
+      const icon = item.querySelector(".accordion-icon");
+      const body = item.querySelector(".accordion-body");
+
+      header.addEventListener("click", () => {
+        const isOpen = body.style.maxHeight && body.style.maxHeight !== "0px";
+
+        // Close all
+        document
+          .querySelectorAll("#docs-accordion .accordion-body")
+          .forEach((b) => (b.style.maxHeight = "0px"));
+        document
+          .querySelectorAll("#docs-accordion .accordion-icon")
+          .forEach((i) => i.classList.remove("open"));
+
+        if (!isOpen) {
+          body.style.maxHeight = body.scrollHeight + "px";
+          icon.classList.add("open");
+        }
+      });
+    });
+
+    // Expand first accordion section by default
+    window.addEventListener("load", () => {
+      const firstBody = document.querySelector("#docs-accordion .accordion-body");
+      const firstIcon = document.querySelector("#docs-accordion .accordion-icon");
+      if (firstBody && firstIcon) {
+        firstBody.style.maxHeight = firstBody.scrollHeight + "px";
+        firstIcon.classList.add("open");
+      }
+    });
+  </script>
+</body>
+</html>
